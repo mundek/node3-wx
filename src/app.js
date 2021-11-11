@@ -1,8 +1,8 @@
-const path = require('path')
-const express = require('express')
-const hbs = require('hbs')
-const geocode = require('./utils/geocode')
-const forecast = require('./utils/forecast')
+const path = require('path') // a core node module
+const express = require('express') // non-core module
+const hbs = require('hbs') // non-core module
+const geocode = require('./utils/geocode'); // app-specific utility code
+const forecast = require('./utils/forecast') // app-specific utility code
 
 const app = express()
 
@@ -43,9 +43,7 @@ app.get('/help', (req, res) => {
 
 app.get('/weather', (req, res) => {
     if (!req.query.address) {
-        return res.send({
-            error: 'You must provide an address!'
-        })
+        return res.send({ error })
     }
 
     geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
@@ -59,9 +57,8 @@ app.get('/weather', (req, res) => {
             }
 
             res.send({
-                forecast: forecastData,
                 location,
-                address: req.query.address
+                forecast: forecastData
             })
         })
     })
