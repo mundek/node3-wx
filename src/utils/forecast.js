@@ -11,7 +11,7 @@ const forecast = (lat, long, callback) => {
             callback('Unable to find location', undefined)
         } else {
             const currWX = body.current;
-            callback(undefined, `Current conditions: ${currWX.weather_descriptions[0]}. It is currently ${currWX.temperature} degrees F (feels like ${currWX.feelslike}) in ${body.location.name} (${lat}, ${long}).`)
+            callback(undefined, `Current conditions: ${currWX.weather_descriptions[0]}. As of ${currWX.observation_time} UTC it is ${currWX.temperature} degrees F (feels like ${currWX.feelslike}) in ${body.location.name} (${lat}, ${long}).`)
         }
     })
 }
